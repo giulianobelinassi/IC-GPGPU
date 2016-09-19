@@ -6,18 +6,13 @@ PROGRAM MAIN
 	DOUBLE PRECISION, ALLOCATABLE, DIMENSION(:) :: b
 	DOUBLE PRECISION :: sum_err
 	INTEGER, ALLOCATABLE,  DIMENSION(:) :: p
-	CHARACTER(len=16) :: filestring
-!	CHARACtER(len=*), PARAMETER :: fout = "out_01"
+	CHARACTER(len=11) :: filestring
 	INTEGER :: n, stats, i
-
 	REAL :: ticks, finish
-
-
-	ALLOCATE(p(n))
 
 	!Cholesky
 	DO i = 1, 10
-		WRITE (filestring, '(A,I2.2)'), 'symm/symm_', i
+		WRITE (filestring, '(A,I2.2)'), 'symm/sym_', i
 		n = READ_LINSYS_FILE(filestring, A, b)
 		PRINT *, "Calculando por Colunas: ", filestring
 		CALL CPU_TIME(ticks)
@@ -27,7 +22,7 @@ PROGRAM MAIN
 		ENDIF
 		CALL CPU_TIME(finish)
 		ticks = finish-ticks
-		PRINT *, "Tempo gasto: ", ticks
+		WRITE (*, '(A, F8.5)'), "Tempo gasto: ", ticks
 		DEALLOCATE(A)
 		DEALLOCATE(b)
 	ENDDO
@@ -36,7 +31,7 @@ PROGRAM MAIN
 
 	!Decomposição LU
 	DO i = 1, 10
-		WRITE (filestring, '(A,I2.2)'), 'matr/matr_', i
+		WRITE (filestring, '(A,I2.2)'), 'matr/mat_', i
 		n = READ_LINSYS_FILE(filestring, A, b)
 		ALLOCATE(p(n))
 		PRINT *, "Calculando por Colunas: ", filestring
@@ -47,7 +42,7 @@ PROGRAM MAIN
 		ENDIF
 		CALL CPU_TIME(finish)
 		ticks = finish-ticks
-		PRINT *, "Tempo gasto: ", ticks
+		WRITE (*, '(A, F8.5)'), "Tempo gasto: ", ticks
 		DEALLOCATE(A)
 		DEALLOCATE(b)
 		DEALLOCATE(p)

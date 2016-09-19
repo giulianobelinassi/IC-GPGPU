@@ -134,3 +134,9 @@ São Paulo, dia 19 de Setembro de 2016.
 	9:40: Terminado main com contador de tempo. Não tenho os arquivos para
 	testar, portanto farei isto assim que chegar em casa.
 	
+	16:00 Reinicio das atividades
+	
+	18:32 Encontrei um problema na decomposição LU: Faltava um ENDDO na linha
+	124 do colimp.f95. 
+	
+	18:45 Fortran foi mais rápido que C.

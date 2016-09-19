@@ -1,0 +1,45 @@
+ Calculando por Colunas: symm/sym_01
+Tempo gasto:  0.00000
+ Calculando por Colunas: symm/sym_02
+Tempo gasto:  0.00000
+ Calculando por Colunas: symm/sym_03
+Tempo gasto:  0.00400
+ Calculando por Colunas: symm/sym_04
+Tempo gasto:  0.01200
+ Calculando por Colunas: symm/sym_05
+Tempo gasto:  0.02000
+ Calculando por Colunas: symm/sym_06
+Tempo gasto:  0.03200
+ Calculando por Colunas: symm/sym_07
+Tempo gasto:  0.06000
+ Calculando por Colunas: symm/sym_08
+ Erro. Matriz singular ou não definida positiva
+Tempo gasto:  0.02000
+ Calculando por Colunas: symm/sym_09
+ Erro. Matriz singular ou não definida positiva
+Tempo gasto:  0.04800
+ Calculando por Colunas: symm/sym_10
+Tempo gasto:  0.14800
+ PARTE 2: Eliminação de Gauss
+ Calculando por Colunas: matr/mat_01
+Tempo gasto:  0.00000
+ Calculando por Colunas: matr/mat_02
+Tempo gasto:  0.00400
+ Calculando por Colunas: matr/mat_03
+Tempo gasto:  0.00800
+ Calculando por Colunas: matr/mat_04
+Tempo gasto:  0.01600
+ Calculando por Colunas: matr/mat_05
+Tempo gasto:  0.03600
+ Calculando por Colunas: matr/mat_06
+Tempo gasto:  0.06800
+ Calculando por Colunas: matr/mat_07
+Tempo gasto:  0.10800
+ Calculando por Colunas: matr/mat_08
+ Erro. Matriz singular
+Tempo gasto:  0.10800
+ Calculando por Colunas: matr/mat_09
+ Erro. Matriz singular
+Tempo gasto:  0.10400
+ Calculando por Colunas: matr/mat_10
+Tempo gasto:  0.44400

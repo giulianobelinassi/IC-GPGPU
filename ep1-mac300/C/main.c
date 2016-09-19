@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 			write_linsys_file(filestring, n, A, b);
 		}
 	}
-	
+/*	
 	for (i = 1; i <= 10; ++i)
 	{
 		sprintf(strptr, "%02d", i);
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 			write_linsys_file(filestring, n, A, b);
 		}
 	}
-	
+*/	
 	
 	/*PARTE 2*/
 	strcpy(filestring, "matr/mat_");
@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 			write_linsys_file(filestring, n, A, b);
 		}
 	}
-	
+/*	
 	for (i = 1; i <= 10; ++i)
 	{
 		sprintf(strptr, "%02d", i);
@@ -96,6 +96,7 @@ int main(int argc, char* argv[])
 			write_linsys_file(filestring, n, A, b);
 		}
 	}
+	*/
 /*
 	n = read_linsys_file("symm/sim_01", A, b);
 	print_vector(n, b);

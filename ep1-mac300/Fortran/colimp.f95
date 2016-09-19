@@ -72,12 +72,14 @@ MODULE COLIMP
 
 			IF (A(j, j) <= 0) THEN
 				CHOLCOL = -1
+				RETURN
 			ENDIF
 
 			A(j, j) = SQRT(A(j, j))
 
 			A(j+1:n, j) = A(j+1:n, j)/A(j, j)
 		ENDDO
+		CHOLCOL = 0
 	END FUNCTION CHOLCOL
 
 	INTEGER FUNCTION SYMMCOL(A, b)
@@ -116,9 +118,10 @@ MODULE COLIMP
 		DO k = 1, n-1
 			imax = k
 			DO i = k+1, n
-				IF (ABS(A(i, k)) > ABS(A(imax, k))) THEN
+				IF (DABS(A(i, k)) > DABS(A(imax, k))) THEN
 					imax = i
 				ENDIF
+			ENDDO
 			p(k) = imax
 
 			IF (imax /= k) THEN
@@ -138,10 +141,8 @@ MODULE COLIMP
 			DO j = k+1, n
 				A(k+1:n, j) = A(k+1:n, j) - A(k, j)*A(k+1:n, k)
 			ENDDO
-
-			ENDDO
 		ENDDO
-		IF (A(k, k) == 0) THEN
+		IF (A(n, n) == 0) THEN
 			LUCOL = -1
 		ELSE
 			LUCOL = 0

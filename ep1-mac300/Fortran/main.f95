@@ -2,52 +2,57 @@ PROGRAM MAIN
 	USE MATRIXIO
 	USE COLIMP
 	IMPLICIT NONE
-	DOUBLE PRECISION, DIMENSION(100, 100) :: A, A2
-	DOUBLE PRECISION, DIMENSION(100) :: b, b2
+	DOUBLE PRECISION, ALLOCATABLE, DIMENSION(:,:) :: A
+	DOUBLE PRECISION, ALLOCATABLE, DIMENSION(:) :: b
 	DOUBLE PRECISION :: sum_err
-	INTEGER, DIMENSION(100) :: p
-	CHARACTER(len=*), PARAMETER :: fin  = "sym_01"
-	CHARACtER(len=*), PARAMETER :: fout = "out_01"
-	INTEGER :: n, stats, j
-	
-	n = READ_LINSYS_FILE(fin, A, b)
+	INTEGER, ALLOCATABLE,  DIMENSION(:) :: p
+	CHARACTER(len=16) :: filestring
+!	CHARACtER(len=*), PARAMETER :: fout = "out_01"
+	INTEGER :: n, stats, i
 
-	A2 = A ! Fortran faz deep-copy :-)
-
-!	stats = CHOLCOL(A)
-!	IF (stats == -1) THEN
-!		PRINT *, "Error: CHOLCOL"
-!	ENDIF
-!
-!	stats = FORWCOL(A, b)
-!	IF (stats == -1) THEN
-!		PRINT *, "ERROR: FORWCOL"
-!	ENDIF
-!
-!	stats = BACKCOL(A, b, .true.)
-!	IF (stats == -1) THEN
-!		PRINT *, "ERROR: BACKCOL"
-!	ENDIF
-!
-!	b2 = MATMUL(A2, b)
-!
-!	PRINT *, b2
-
-	stats = SSCOL(A, p, b)
-	b2 = MATMUL(A2, b)
-
-	sum_err = 0
-
-	n = READ_LINSYS_FILE(fin, A, b)
+	REAL :: ticks, finish
 
 
-	DO j = 1, n
-		PRINT *, ABS(b2(j) - b(j))
+	ALLOCATE(p(n))
+
+	!Cholesky
+	DO i = 1, 10
+		WRITE (filestring, '(A,I2.2)'), 'symm/symm_', i
+		n = READ_LINSYS_FILE(filestring, A, b)
+		PRINT *, "Calculando por Colunas: ", filestring
+		CALL CPU_TIME(ticks)
+		stats = SYMMCOL(A, b)
+		IF (stats == -1) THEN
+			PRINT *, "Erro. Matriz singular ou não definida positiva"
+		ENDIF
+		CALL CPU_TIME(finish)
+		ticks = finish-ticks
+		PRINT *, "Tempo gasto: ", ticks
+		DEALLOCATE(A)
+		DEALLOCATE(b)
 	ENDDO
-	
-	PRINT *, "Soma dos erros: ", sum_err
 
-	!CALL WRITE_LINSYS_FILE(fout, A, b2)
-	
+	PRINT *, "PARTE 2: Eliminação de Gauss"
+
+	!Decomposição LU
+	DO i = 1, 10
+		WRITE (filestring, '(A,I2.2)'), 'matr/matr_', i
+		n = READ_LINSYS_FILE(filestring, A, b)
+		ALLOCATE(p(n))
+		PRINT *, "Calculando por Colunas: ", filestring
+		CALL CPU_TIME(ticks)
+		stats = SSCOL(A, p, b)
+		IF (stats == -1) THEN
+			PRINT *, "Erro. Matriz singular"
+		ENDIF
+		CALL CPU_TIME(finish)
+		ticks = finish-ticks
+		PRINT *, "Tempo gasto: ", ticks
+		DEALLOCATE(A)
+		DEALLOCATE(b)
+		DEALLOCATE(p)
+	ENDDO
+
+
 
 END PROGRAM MAIN

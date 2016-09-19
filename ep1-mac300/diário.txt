@@ -124,3 +124,13 @@ Fim das atividades do dia.
 
 São Paulo, dia 14 de Setembro de 2016.
 	10:17: Vou postar o problema do GDB no stackoverflow.
+
+	Não documentei as ações posteriores a anterior. A Atualização do gdb do
+	7.7 para a 7.11 resolveu o problema.
+	
+São Paulo, dia 19 de Setembro de 2016.
+	7:58: Criado um diretório no github.
+	
+	9:40: Terminado main com contador de tempo. Não tenho os arquivos para
+	testar, portanto farei isto assim que chegar em casa.
+	

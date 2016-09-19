@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 	clock_t ticks;
 	
 	
-	for (i = 10; i <= 10; ++i)
+	for (i = 1; i <= 10; ++i)
 	{
 		sprintf(strptr, "%02d", i);
 		n = read_linsys_file(filestring, A, b);
@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 		}
 	}
 	
-	for (i = 1; i <= 0; ++i)
+	for (i = 1; i <= 10; ++i)
 	{
 		sprintf(strptr, "%02d", i);
 		n = read_linsys_file(filestring, A, b);

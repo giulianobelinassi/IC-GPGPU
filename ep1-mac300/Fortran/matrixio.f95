@@ -5,7 +5,7 @@ MODULE MATRIXIO
 	INTEGER FUNCTION READ_LINSYS_FILE(fpath, A, b) RESULT(n)
 		IMPLICIT NONE
 
-		DOUBLE PRECISION, INTENT(OUT) :: A(:,:), b(:)
+		DOUBLE PRECISION, ALLOCATABLE, INTENT(OUT) :: A(:,:), b(:)
 		CHARACTER(len=*), INTENT(IN) :: fpath
 		
 		INTEGER :: fd
@@ -15,6 +15,9 @@ MODULE MATRIXIO
 
 		OPEN (fd, FILE=fpath)
 		READ (fd, *, IOSTAT=iostats) n
+
+		ALLOCATE (A(n, n))
+		ALLOCATE (b(n))
 
 		DO i = 1, n
 			DO j = 1, n

@@ -1,0 +1,3 @@
+O Objetivo disto é reescrever o EP1 de MAC0300 - Laboratório de Métodos Numéricos
+com a finalidade de entender mais sobre gerenciamento de projetos em FORTRAN, bem
+como sua sintaxe e peculiaridades. 

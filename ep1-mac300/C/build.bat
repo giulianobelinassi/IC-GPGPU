@@ -1,0 +1,2 @@
+gcc -Wall -pedantic -ansi -O3 -funroll-loops -march=native -mfpmath=sse -g -o optimized.exe main.c rowimp.c colimp.c matrixio.c -lm
+gcc -Wall -pedantic -ansi -g -O0 -o nonoptimized.exe main.c rowimp.c colimp.c matrixio.c -lm

@@ -1,0 +1,166 @@
+São Caetano do Sul, Terça-Feira, dia 6 de Setembro de 2016.
+	22:00h:
+	Reiniciei as atividades pausadas no domingo, dia 4. Esqueci de escrever
+	um diário sobre este dia, mas basicamente o que fiz foi reescrever a
+	função print_matrix do EP1 de MAC0300 em FORTRAN e quebrar a cabeça
+	tentando compilar o programa devido a erros de sintaxe. Após uma hora,
+	obtive sucesso.
+	
+	Neste exato momento, aprendi a diferença entre INTENT(IN) e INTENT(OUT).
+	Isto me parece muito útil para especificações de funções e subrotinas.
+	
+	22:15h: Descobri que não há necessidade de uma função especifica para
+	impressão de uma matriz em FORTRAN; o próprio PRINT *, se encarrega disto.
+	
+	22:30h: Descobri uma forma de passar uma matriz para uma função/subrotina
+	de forma que seu tamanho fique implícito, assim eu consigo uma maior
+	liberdade no tratamento de matrizes.
+	Este site está sendo útil: http://www.fortran90.org/src/best-practices.html
+	
+	23:07: Implementei uma versão do read_linsys_file, mas ainda não testei.
+	Estou cansado, com sono, e há um erro de compilação ao checar o resultado
+	do iostats. Verei isto depois.
+	
+Encerradas as atividades do dia.
+	
+São Caetano do Sul, Quarta-Feira, dia 7 de Setembro de 2016.
+	11:31:
+	Reiniciei as atividades do dia. Preciso encontrar a causa do erro de
+	compilação.
+	
+	11:36: Encontrei a causa do erro. IF(statement) THEN. Esqueci do then.
+	
+	12:21: Reimplementando a função READ_LINSYS_FILE, descobri que é
+	necessário um carinho especial para ler valores de um arquivo em fortran.
+	Este link se tornou útil: http://www.cs.mtu.edu/~shene/COURSES/cs201/NOTES/chap05/REAL-in.html
+	
+	12:34: Encontrei uma maneira de ignorar espaços. Agora consigo prosseguir
+	com a leitura do arquivo.
+	
+	13:34: meu READ_LINSYS_FILE Está lendo os expoentes tudo errado. Pausa
+	para almoço.
+	
+	14:32: Ao contrário da documentação providenciada pelo cs.mtu acima,
+	precisei usar o ES para ler o double, caso contrário o expoente é
+	ignorado.
+	Terminado o Módulo MatrixIO.
+	
+	16:45 Retomada as atividades.
+	
+	19:18 Implementei o backcol e fowrcol. Os resultados estão absurdamente
+	errados.
+Encerradas as atividades do dia.
+
+São Paulo, Quinta-Feira, dia 8 de Setembro de 2016.
+	8:13 Inicio das atividades do dia. Preciso encontrar o problema no
+	backcol e forwcol.
+
+	9:13 Encontrei o problema: A inicialização de uma matriz é
+	completamente contraintuitivo: colocar os valores na mesma linhas
+	no reshape na verdade preenche suas colunas.
+
+	9:37 BACKCOL Implementado e testado.
+	
+Santo André, Domingo, dia 11 se Setembro de 2016.
+	19:59 Inicio das atividades. Vou testar o FORWCOL.
+	
+	20:06 Testado e funcionando. Iniciarei a implementação da decomposição
+	de Cholesky.
+	
+	20:30 Não consigo entender a minha implementação em C. Lembro que tive
+	uma boa sacada... :P
+	
+Fim das atividades do dia.
+
+São Caetano do Sul, Segunda-Feira, dia 12 de Setembro de 2016.
+	19:35. Inicio das atividades.
+	
+	20:28. Fechei este arquivo sem salvar (duh). Até aqui, fiz um Makefile
+	e implementei a Decomposição de Cholesky. Agora irei testá-la.	
+	
+	20:33: gfortran colimp.f95 -o colimp.f95  ... É. Perdi o arquivo.
+	
+	20:35: Encontrei uma versão anterior em um zip que tinha. Espero que
+	Esta não contenha bugs...
+	
+	21:07: Cholesky Implementado.
+	
+	21:26: Cholesky Testado. Erro muito pequeno.
+	
+Fim das atividades do dia.
+
+São Caetano do Sul, Terça-Feira, dia 13 de Setembro de 2016
+	14:00 Inicio das atividades do dia. Inicio da implementação da decompo-
+	sição LU.
+	
+	16:09: Estou perdendo muito tempo debugando o código. O GDB tem problemas
+	para exibir variáveis de outras funções. Perguntarei isto para o Gubi
+	amanhã.
+	
+	16:48: Descobri um problema na minha decomposição de Cholesky. O resultado
+	está estranho.
+	
+	17:04: Encontrei o problema. Era no backrow com transposição. Eu havia
+	consertado esse erro antes, mas eu perdi o arquivo.
+	
+	17:09: Decomposição LU e Cholesky com respostas corretas, porém o arquivo
+	de saída está com problemas: Algumas células estão exibindo ***** ao invés
+	do número. Entrada/Saída em Fortran é algo horrível.
+	
+	17:14: Iniciei a leitura do capítulo "Formatted Output", do 
+	"Fotran 90/95 Explained" de Michael Meltcalf
+	
+	17:24: Não há informações sobre a leitura de exponenciais no livro.
+	
+	17:43: Corrigi o problema. Ainda não acredito que o FORTRAN é incapaz de
+	ler um formato exponencial sem especificar o tamanho da mantissa, expoente
+	e o número como String. 
+	FORTRAN exibe a soma dos erros como sendo 0.0000000000000000 .
+	
+	17:49: Irei modificar o código para lidar com matrizes de tamanhos
+	variáveils
+	
+Fim das atividades do dia.
+
+São Paulo, dia 14 de Setembro de 2016.
+	10:17: Vou postar o problema do GDB no stackoverflow.
+
+	Não documentei as ações posteriores a anterior. A Atualização do gdb do
+	7.7 para a 7.11 resolveu o problema.
+	
+São Paulo, dia 19 de Setembro de 2016.
+	7:58: Criado um diretório no github.
+	
+	9:40: Terminado main com contador de tempo. Não tenho os arquivos para
+	testar, portanto farei isto assim que chegar em casa.
+	
+	16:00 Reinicio das atividades
+	
+	18:32 Encontrei um problema na decomposição LU: Faltava um ENDDO na linha
+	124 do colimp.f95. 
+	
+	18:45 Fortran foi mais rápido que C.
+
+Sorocaba dia 1 de Outubro de 2016
+	13:49 Inicio das atividades. Irei estudar paralelizações de alguns
+	problemas clássicos usando pthreads em Fortran com o objetivo de
+	entender os desafios na parelização de um algoritmo e desenvolver
+	habilidades na conexão Fortran - C.
+	
+	14:55 Relembrei algumas coisas sobre cálculo que me permitem calcular
+	PI usando o método dos trapézios.
+
+	16:43 Chamar as pthreads diretamente via fortran é trabalhoso.
+	Apenas consegui SEGFAULT até agora.
+
+	17:44 Consegui criar uma pthread, porém não consigo dar join. Aprendi
+	um pouco mais de como chamadas de funções em FORTRAN funcinam. Tudo
+	é passado por referência, portanto caso um procedimento C necessite de
+	passagem por cópia, algo a mais deve ser feito
+
+	18:11 Será necessário criar interfaces entre C e fortran. Vou procurar uma
+	boa maneira de fazer isto.
+
+	18:47 Estou com um segfault no pthread_attr_destroy. Não sei o motivo. :(
+
+	

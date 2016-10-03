@@ -4,8 +4,7 @@ PROGRAM PI
     INTEGER :: i, n
     DOUBLE PRECISION :: resp, s
     INTEGER, DIMENSION (2) :: sumrange = (/1, 100000000/)
-    INTEGER attr
-    INTEGER(c_int), TARGET :: thread
+    INTEGER, VOLATILE :: thread, attr
     
     s = 0
     resp = 0
@@ -20,6 +19,7 @@ PROGRAM PI
 
     resp = 4*(resp/n + 1/(2*n))
     WRITE (*,"(F12.10)") resp
+    STOP 0
 
     CONTAINS
     SUBROUTINE PI_THREAD(sumrange)
@@ -33,4 +33,12 @@ PROGRAM PI
         PRINT *, s
 
     END SUBROUTINE PI_THREAD
+
+!	INTERFACE
+!		SUBROUTINE pthread_join(thread) BIND (C)
+!			USE ISO_C_BINDING
+!			IMPLICIT NONE
+!			INTEGER(C_PTR) :: thread
+!		END SUBROUTINE pthread_join
+!	END INTERFACE
 END PROGRAM PI

@@ -163,4 +163,12 @@ Sorocaba dia 1 de Outubro de 2016
 
 	18:47 Estou com um segfault no pthread_attr_destroy. Não sei o motivo. :(
 
+São Paulo, dia 3 de Outubro de 2016
+	8:15 Vou tentar resolver o problema da interface. Criarei um makefile
+	para tentar facilitar meu trabalho.
+	
+	9:22 É demasiado complicado utilizar pthreads em fortran. Consegui criar
+	uma interface que funciona caso a otimização seja no máximo O1.
+	Descartarei o uso de pthreads e estudarei o OpenMP para Fortran.
+	
 	

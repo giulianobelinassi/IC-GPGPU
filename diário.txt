@@ -171,4 +171,11 @@ São Paulo, dia 3 de Outubro de 2016
 	uma interface que funciona caso a otimização seja no máximo O1.
 	Descartarei o uso de pthreads e estudarei o OpenMP para Fortran.
 	
+São Caetano do Sul, dia 6 de Outubro de 2016
+	17:01 Inicio dos estudos de OpenMP em Fortran
+	
+	20:04 Brinquei um pouco com o OpenMP. Estou usando uma apostila de 2002
+	um pouco desatualizada, portanto preciso pesquisar os comandos equivale-
+	entes na versão 4.0 do OpenMP. Implementei um cálculo de PI paralelo.
+
 	

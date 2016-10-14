@@ -178,4 +178,37 @@ São Caetano do Sul, dia 6 de Outubro de 2016
 	um pouco desatualizada, portanto preciso pesquisar os comandos equivale-
 	entes na versão 4.0 do OpenMP. Implementei um cálculo de PI paralelo.
 
+Sorocaba, dia 14 de Outubro de 2016
+	11:27: No livro do Andrews há um capítulo sobre decomposição LU paralela.
+	vou estudá-la.
+
+	11:33: O capítulo tem um requisito sobre multiplicação de matrizes em
+	paralelo. Irei lê-lo.
+
+	12:22: Pausa para almoço. Irei Implementar uma multiplicação de
+	Matrizes em paralelo.
+
+	13:44: Retorno.
+
+	16:25: Implementei a multiplicação de matrizes. Para 1024x1024, a
+	MATMUL do Fortran demora cerca de 1.4 segundos, enquanto a minha
+	demora 13 segundos. Quando eu otimizo meu programa (O4), o tempo é
+	parecido, mas a do fortran ainda ganha. Vou decompilar e ver que magia
+	o compilador está fazendo.
+
+	16:26 Pausa. Imprevistos
+
+	18:31: Retorno. 
+
+	18:40: O gfortran sumiu com a minha função. Não consigo localizar o
+	código dela olhando o Assembly.
+
+
+	19:10 Fiz uma parelização da multiplicação de matrizes e implementei no
+	OpenMP. Está demorando um pouco mais que a sequencial para uma matriz
+	1000x1000, mas acredito que para matrizes maiores isto se inverta. Meu
+	Gerador de Matrizes aleatórios baseado no do Prof. Ernesto está com bugs
+	e não consigo gerar matrizes maiores que 1000x1000, portanto precisarei
+	reescrevê-lo.
 	
+Fim das atividades do dia.

@@ -1,36 +1,46 @@
 PROGRAM MYMATMUL_PROG
     USE MATRIXIO
+    USE OMP_LIB
     IMPLICIT NONE
     DOUBLE PRECISION, DIMENSION(:,:), ALLOCATABLE :: A, B, C, D
     DOUBLE PRECISION, DIMENSION(:), ALLOCATABLE :: garbage
-    CHARACTER(LEN=6) :: fpath = "mat_10"
-    REAL :: TICKS, FINISH
+    CHARACTER(LEN=16) :: fpath = 'mat_10'
+    DOUBLE PRECISION :: TICKS, FINISH
     INTEGER :: n
 
+
+    !PRINT *, "Lendo matriz do disco..."
     n = READ_LINSYS_FILE(fpath, A, garbage)
     DEALLOCATE(garbage)
+ 
+    PRINT *, "Realizando cópia de A para B..."
     B = A
 
-    CALL CPU_TIME(TICKS)
-    C = MYMATMUL(A, B)
-    CALL CPU_TIME(FINISH)
-    TICKS = FINISH - TICKS
-    WRITE (*, '(A, F8.5)'), "Tempo gasto: ", ticks
-
-    CALL CPU_TIME(TICKS)
+    PRINT *, "Multiplicando A por B usando MATMUL..."
+    TICKS = OMP_GET_WTIME()
     D = MATMUL(A, B)
-    CALL CPU_TIME(FINISH)
+    FINISH = OMP_GET_WTIME()
     TICKS = FINISH - TICKS
-    WRITE (*, '(A, F8.5)'), "Tempo gasto: ", ticks
+    PRINT *, "Tempo gasto FORTRAN_MATMUL: ", ticks
+
+
+    PRINT *, "Multiplicando A por B usando MYMATMUL..."
+    TICKS = OMP_GET_WTIME()
+    D = MYMATMUL(A, B)
+    FINISH = OMP_GET_WTIME()
+    TICKS = FINISH - TICKS
+    PRINT *, "Tempo gasto MYMATMUL: ", ticks
+
+    !WRITE (*, '(A, F8.5)'), "Tempo gasto: ", ticks
     
-    IF (COMPARE_MAT(C, D) .eqv. .FALSE.) THEN
-        PRINT *, "Muitos Erros"
-    ELSE
-        PRINT *, "Tá certo"
-    ENDIF
+!    IF (COMPARE_MAT(C, D) .eqv. .FALSE.) THEN
+!        PRINT *, "Muitos Erros"
+!    ELSE
+!        PRINT *, "Tá certo"
+!    ENDIF
 
     DEALLOCATE(A)
-    DEALLOCATE(C)
+    DEALLOCATE(D)
 
     CONTAINS
  
@@ -57,7 +67,6 @@ PROGRAM MYMATMUL_PROG
             C(1:m, k) = MATMUL(A, B(1:n, k)) 
         ENDDO
         !$OMP END PARALLEL DO
-
      END FUNCTION MYMATMUL
 
 !    FUNCTION MYMATMUL(A, B) RESULT(C)

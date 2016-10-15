@@ -212,3 +212,16 @@ Sorocaba, dia 14 de Outubro de 2016
 	reescrevê-lo.
 	
 Fim das atividades do dia.
+
+Sorocaba, dia 15 de Outubro de 2016
+	15:13 Vou reconstruir o gerador de matrizes aleatórias.
+
+	17:38 Implementei outro gerador de matrizes aleatórias. Após resolver
+	alguns problemas com o código implementado anteirormente, testei a
+	MYMATMUL. Em um Core2Quad Q8200 @ 2.6Ghz, a MATMUL do Fortran demora
+	97.280119148999830. a MYMATMUL demora 64.170854659001336 com 4
+	processadores (matriz 4000x4000). Testarei em 2 processadores.
+
+	17:44: Em 2 processadores o tempo foi 62.799928311998279
+
+	17:54: Pausa

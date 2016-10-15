@@ -6,7 +6,7 @@ MODULE MATRIXIO
 		IMPLICIT NONE
 
 		DOUBLE PRECISION, ALLOCATABLE, INTENT(OUT) :: A(:,:), b(:)
-		CHARACTER(len=*), INTENT(IN) :: fpath
+		CHARACTER(LEN=*), INTENT(IN) :: fpath
 		
 		INTEGER :: fd
 		INTEGER :: i, j, k
@@ -21,12 +21,12 @@ MODULE MATRIXIO
 
 		DO i = 1, n
 			DO j = 1, n
-				READ (fd, "(I3, 1X, I3, 1X, ES29.22E2)", IOSTAT=iostats) garbage, garbage, A(i, j)
+				READ (fd, "(I5, 1X, I5, 1X, ES29.22E2)", IOSTAT=iostats) garbage, garbage, A(i, j)
 			ENDDO
 		ENDDO
 
 		DO i = 1, n
-			READ(fd, "(I3, 1X, ES29.22E2)", IOSTAT=iostats), garbage, b(i)
+			READ(fd, "(I5, 1X, ES29.22E2)", IOSTAT=iostats), garbage, b(i)
 		ENDDO
 
 		IF (iostats > 0) THEN
@@ -45,15 +45,15 @@ MODULE MATRIXIO
 		
 		OPEN (fd, FILE=fpath)
 
-		WRITE (fd, "(I3)") n
+		WRITE (fd, "(I5)") n
 		DO i = 1, n
 			DO j = 1, n
-				WRITE (fd, "(I3, 1X, I3, 1X, ES32.24E3)", IOSTAT=iostats) i, j, A(i, j)
+				WRITE (fd, "(I5, 1X, I5, 1X, ES32.24E3)", IOSTAT=iostats) i, j, A(i, j)
 			ENDDO
 		ENDDO
 		
 		DO i = 1, n
-			WRITE (fd, "(I3, 1X, ES32.24E3)", IOSTAT=iostats) i, b(i)
+			WRITE (fd, "(I5, 1X, ES32.24E3)", IOSTAT=iostats) i, b(i)
 		ENDDO	
 		CLOSE (fd)
 	END SUBROUTINE

@@ -225,3 +225,23 @@ Sorocaba, dia 15 de Outubro de 2016
 	17:44: Em 2 processadores o tempo foi 62.799928311998279
 
 	17:54: Pausa
+Fim das Atividades do dia.
+
+São Paulo, dia 17 de Outubro de 2016
+	8:20: Vou executar o MYMATMUL em um AMD Phenom II X6 1055T
+	
+	8:36: Para uma matriz 6000x6000, 6 Cores compilado com -O4 e march=native:
+		MATMUL:   343.67481395900177
+		MYMATMUL: 120.89353359799861
+		
+	8:41 Para uma matriz 4000x4000, 6 Cores compilado com -O4 e march=native:
+		MATMUL:   99.336008106998634 
+		MYMATMUL: 36.906518944997515
+		
+	8:45: Para 4000x4000 e 4 cores:
+		MYMATMUL: 37.650977886998589
+		
+	8:50 Para 2 Núcleos (4000x4000), temos 55.943051006001042
+	
+	9:12 Mandei rodar o Zillertal. Cancelei, pois o sequencial demorou
+	727.02343160298187

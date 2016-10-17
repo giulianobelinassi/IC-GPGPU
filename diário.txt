@@ -243,5 +243,14 @@ São Paulo, dia 17 de Outubro de 2016
 		
 	8:50 Para 2 Núcleos (4000x4000), temos 55.943051006001042
 	
+	9:20 Pausa
+	
+	15:58: Em um Core-i5 3210m, para uma matriz 4000x4000 temos 47.211970317999999
+	em apenas um núcleo. Para 4 núcleos, temos 44.166021297000043.
+	
+	16:04: Para 2 cores, 45.053485375000037.
+	
+	18:13 Segfault em MyMatMul2.
+	
 	9:12 Mandei rodar o Zillertal. Cancelei, pois o sequencial demorou
 	727.02343160298187

@@ -264,3 +264,24 @@ São Paulo, dia 14 de Outubro de 2016
 	são excusivas.
 	
 	9:40 Vou pedir orientação para o Prof. Gubi.
+	pausa
+	
+	17:09 Vou estudar CUDA e assim adentrar ao tópico de GPGPU.
+	
+	17:45: Seguindo um exemplo de soma na GPU. Algumas perguntas surgiram,
+	como e se eu executasse o programa em uma máquina sem GPU nvidia, e se
+	eu não desse free() nas estruturas alocadas, etc... Vou testar para
+	ver o que acontece.
+	
+	17:48: Ao testar em outra máquina, descobri que é necessário a biblioteca
+	cuda. Como eu não tenho acesso de administrador desta máquina, então
+	não posso instalar a biblioteca.
+	
+	18:00: Com o programa mem.cu, descobri que ao finalizar o programa, a
+	memória que ele requisitou é liberada. Menos mal, assim se houver
+	vazamento de memória não será necessário reiniciar a máquina.
+	
+	
+	19:30: Problemas com o código vector_add.cu: A soma não é realizada!
+	
+	

@@ -1,5 +1,5 @@
 PROGRAM MYMATMUL_PROG
-    USE MATRIXIO
+USE MATRIXIO
     USE OMP_LIB
     IMPLICIT NONE
     DOUBLE PRECISION, DIMENSION(:,:), ALLOCATABLE :: A, B, C, D
@@ -16,28 +16,26 @@ PROGRAM MYMATMUL_PROG
     PRINT *, "Realizando cópia de A para B..."
     B = A
 
-!    PRINT *, "Multiplicando A por B usando MATMUL..."
-!    TICKS = OMP_GET_WTIME()
-!    C = MATMUL(A, B)
-!    FINISH = OMP_GET_WTIME()
-!    TICKS = FINISH - TICKS
-!	PRINT *, "Tempo gasto FORTRAN_MATMUL: ", ticks
+    !PRINT *, "Multiplicando A por B usando MATMUL..."
+    !TICKS = OMP_GET_WTIME()
+    !C = MATMUL(A, B)
+    !FINISH = OMP_GET_WTIME()
+    !TICKS = FINISH - TICKS
+	!PRINT *, "Tempo gasto FORTRAN_MATMUL: ", ticks
 
 
     PRINT *, "Multiplicando A por B usando MYMATMUL..."
     TICKS = OMP_GET_WTIME()
-    D = MYMATMUL2(A, B)
+    D = MYMATMUL(A, B)
     FINISH = OMP_GET_WTIME()
     TICKS = FINISH - TICKS
     PRINT *, "Tempo gasto MYMATMUL: ", ticks
 
-    !WRITE (*, '(A, F8.5)'), "Tempo gasto: ", ticks
-    
-    IF (COMPARE_MAT(C, D) .eqv. .FALSE.) THEN
-        PRINT *, "Muitos Erros"
-    ELSE
-        PRINT *, "Tá certo"
-    ENDIF
+    !IF (COMPARE_MAT(C, D) .eqv. .FALSE.) THEN
+    !    PRINT *, "Muitos Erros"
+    !ELSE
+    !    PRINT *, "Tá certo"
+    !ENDIF
 
     DEALLOCATE(A)
     !DEALLOCATE(C)
@@ -63,22 +61,26 @@ PROGRAM MYMATMUL_PROG
         ENDIF
 
         ALLOCATE (C(m, p))
-        C = 0
+        !C = 0
 
 		windn = n/2
 		windm = m/2
 		windp = p/2
 
-		!OMP PARALLEL DO COLLAPSE(3) PRIVATE(windi_low, windi_high, windj_low, windj_high, windk_low, windk_high)
-        DO k = 1, MODULO(p, 2)
-            DO j = 1, MODULO(n, 2)
-                DO i = 1, MODULO(m, 2)
+		!$OMP PARALLEL DO PRIVATE(k,j,i,windi_low,windi_high,windj_low,windj_high,windk_low,windk_high)
+        DO k = 1, 2
+            DO j = 1, 2
+                DO i = 1, 2
                     windi_low  = (i-1)*windm + 1
 					windj_low  = (j-1)*windn + 1
 					windk_low  = (k-1)*windp + 1
 					windi_high = i*windm
 					windj_high = j*windn
 					windk_high = k*windp
+				!	PRINT *, "i: ", windi_low, windi_high
+				!	PRINT *, "j: ", windj_low, windj_high
+				!	PRINT *, "k: ", windk_low, windk_high
+					
 					C(windi_low:windi_high, windk_low:windk_high) = C(windi_low:windi_high, windk_low:windk_high) + & 
 					MATMUL(A(windi_low:windi_high, windj_low:windj_high), B(windj_low:windj_high, windk_low:windk_high))
 				ENDDO
@@ -104,11 +106,12 @@ PROGRAM MYMATMUL_PROG
         ENDIF
 
         ALLOCATE (C(m, p))
-        C = 0
+        !C = 0
 
-        !$OMP PARALLEL DO
+        !$OMP PARALLEL DO PRIVATE(k)
         DO k = 1, p
-            C(1:m, k) = MATMUL(A, B(1:n, k)) 
+            C(1:m, k) = 0
+			C(1:m, k) = MATMUL(A, B(1:n, k)) 
         ENDDO
         !$OMP END PARALLEL DO
      END FUNCTION MYMATMUL

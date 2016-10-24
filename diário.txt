@@ -254,3 +254,13 @@ São Paulo, dia 17 de Outubro de 2016
 	
 	9:12 Mandei rodar o Zillertal. Cancelei, pois o sequencial demorou
 	727.02343160298187
+	
+São Paulo, dia 14 de Outubro de 2016
+	8:30 Inicio das atividades. Vou verificar o problema com a MATMUL2
+	
+	9:18 A MyMatMul2 está sequencial e e não sei o porque.
+	
+	9:25 Entendi o problema: O OpenMP não está detectando que as partições
+	são excusivas.
+	
+	9:40 Vou pedir orientação para o Prof. Gubi.

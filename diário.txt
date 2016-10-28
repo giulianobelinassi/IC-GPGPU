@@ -255,7 +255,7 @@ São Paulo, dia 17 de Outubro de 2016
 	9:12 Mandei rodar o Zillertal. Cancelei, pois o sequencial demorou
 	727.02343160298187
 	
-São Paulo, dia 14 de Outubro de 2016
+São Paulo, dia 24 de Outubro de 2016
 	8:30 Inicio das atividades. Vou verificar o problema com a MATMUL2
 	
 	9:18 A MyMatMul2 está sequencial e e não sei o porque.
@@ -284,4 +284,19 @@ São Paulo, dia 14 de Outubro de 2016
 	
 	19:30: Problemas com o código vector_add.cu: A soma não é realizada!
 	
-	
+Sorocaba, dia 28 de outubro de 2016
+	13:44: inicio.
+
+	14:29: Feito o vector_add também usar threads. irei fazer um brenchmark
+	em instantes.
+
+	15:07: O programa de soma de vetores não é um bom brenchmark. Estou
+	pesquisando agora como usar cuda em fortran.
+
+	15:31: O Compilador Fortran PGI é pago x.x.
+
+	15:33: Paralelizarei uma decomposição LU. 
+
+	15:48: Estou lendo sobre o BLAS. Talvez seja melhor começar a
+	trabalhar sobre o código do Ronaldo
+

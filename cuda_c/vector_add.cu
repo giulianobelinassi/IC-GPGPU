@@ -2,11 +2,26 @@
 #include <cuda_runtime.h>
 #include <unistd.h>
 
-#define N 10*1024*1024
+#define N 20*1024*1024
+#define THREADS_PER_BLOCK 512
+
+#ifdef __cplusplus
+#define restrict __restrict__
+#endif
 
 __global__ void gpu_vector_add(int* a, int* b, int* c)
 {
-	c[blockIdx.x] = a[blockIdx.x] + b[blockIdx.x];
+	int index = threadIdx.x + blockIdx.x*blockDim.x;
+	c[index] = a[index] + b[index];
+}
+
+void cpu_vector_add(int* restrict a, int* restrict b, int* restrict c)
+{
+	int i;
+
+	for (i = 0; i < N; ++i)
+		c[i] = a[i] + b[i];
+
 }
 
 int main()
@@ -56,10 +71,10 @@ int main()
 	
 	cudaMemcpy(d_b, b, size, cudaMemcpyHostToDevice);
 	
-	gpu_vector_add<<<N,1>>>(d_a, d_b, d_c);
+	gpu_vector_add<<<N/THREADS_PER_BLOCK, THREADS_PER_BLOCK>>>(d_a, d_b, d_c);
 	       /*N = número de blocos. 1 bloco = um conjunto de threads*/
 
-	usleep(1000000);
+	cudaDeviceSynchronize();
 	cudaMemcpy(c, d_c, size, cudaMemcpyDeviceToHost);
 	printf("Resultado: %d\n", c[0]);
 	/*Libera a memória na placa. E se eu não liberar?*/
